@@ -1,7 +1,7 @@
 const User = require('../model/user');
 
 
-// @desc    Get current user profile
+// Get current user profile
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
@@ -12,7 +12,7 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-// @desc    Update user profile
+// Update user profile
 exports.updateProfile = async (req, res) => {
   try {
     const updates = (({ firstName, lastName, phone }) => ({ firstName, lastName, phone }))(req.body);
@@ -24,7 +24,7 @@ exports.updateProfile = async (req, res) => {
 };
 
 
-// @desc    Get all users with optional category filter
+// Get all users with optional category filter
 exports.getUsersByCategory = async (req, res) => {
     try {
       const { category } = req.params;

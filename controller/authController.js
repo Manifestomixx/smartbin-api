@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 // Utils: send token
 const sendToken = (user, statusCode, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '7d',
+      expiresIn: '10m',
     });
   
     res.status(statusCode).json({
@@ -21,7 +21,7 @@ const sendToken = (user, statusCode, res) => {
     });
   };
   
-  // @desc    Register new user
+  // Register new user
   exports.register = async (req, res) => {
       try {
           const { firstName, lastName, email, phone, password, category } = req.body;
@@ -47,7 +47,7 @@ const sendToken = (user, statusCode, res) => {
         }
   };
   
-  // @desc    Login user
+  // Login user
   exports.login = async (req, res) => {
     try {
       const { email, phone, password } = req.body;
@@ -70,7 +70,7 @@ const sendToken = (user, statusCode, res) => {
     }
   };
 
-  // @desc    Forgot password
+  // Forgot password
 exports.forgotPassword = async (req, res) => {
     try {
       const { email } = req.body;
@@ -89,7 +89,7 @@ exports.forgotPassword = async (req, res) => {
     }
   };
   
-  // @desc    Reset password
+  // Reset password
   exports.resetPassword = async (req, res) => {
     try {
       const resetPasswordToken = crypto
